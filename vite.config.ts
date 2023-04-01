@@ -4,7 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'/mangosteen--3/dist/',
+  // base:'/mangosteen--3/dist/',
   plugins: [
     vue(),
     vueJsx({
