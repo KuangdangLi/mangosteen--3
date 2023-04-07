@@ -1,22 +1,15 @@
 import { RouterLink } from 'vue-router';
 import icon from "../../assets/icons/cloud.svg"
-import s from "./WelcomeLayout.module.scss"
-import { WelcomeLayout } from './WelcomeLayout';
+import s from "./WelcomeCard.module.scss"
+import { WelcomeCard } from './WelcomeCard';
 
 export const Forth = ()=> (
-      <WelcomeLayout>
+      <WelcomeCard>
         {{
           icon: ()=>(<img src={icon} />),
-          title:() => <h2>云备份<br />再也不怕数据丢失</h2>,
-          buttons: ()=>(
-            <>
-            <RouterLink to="/start" class={s.fake}>跳过</RouterLink>
-            <RouterLink to="/start">完成</RouterLink>
-            <RouterLink to="/start">跳过</RouterLink>
-            </>
-          )
+          title:() => <h2>云备份<br />再也不怕数据丢失</h2>
         }}
-      </WelcomeLayout>
+      </WelcomeCard>
    )
 
    Forth.displayName = "Forth"

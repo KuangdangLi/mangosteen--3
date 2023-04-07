@@ -12,8 +12,11 @@ export const Welcome = defineComponent({
           <h1>山竹记账</h1>
         </header>
         <main>
-        <RouterView />
+        <RouterView name="main"></RouterView>
         </main>
+        <footer>
+        <RouterView name="footer"></RouterView>
+        </footer>
    </div>
   )
  }
