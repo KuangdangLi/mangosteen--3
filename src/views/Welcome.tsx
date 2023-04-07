@@ -1,10 +1,15 @@
-import { Transition, VNode, defineComponent, ref } from 'vue';
+import { Transition, VNode, defineComponent, onMounted, ref, watch, watchEffect } from 'vue';
 import { RouteLocationNormalizedLoaded, RouterView } from 'vue-router';
-import logo from '../assets/icons/mangosteen.svg'
 import s from './Welcome.module.scss'
+import { useSwipe } from '../hooks/useSwipe';
 
 export const Welcome = defineComponent({
  setup: (props, context) => {
+  const main = ref<HTMLElement | null>(null)
+  const {swiping,direction,distance} = useSwipe(main)
+  watchEffect(() => {
+    console.log(swiping.value, direction.value)
+  })
   return () => (
     <div class={s.wrapper}>
         <header>
@@ -13,7 +18,7 @@ export const Welcome = defineComponent({
           </svg>
           <h1>山竹记账</h1>
         </header>
-        <main>
+        <main ref={main}>
         <RouterView name="main">
           {({Component:Content,route:R}:{Component:VNode,route:RouteLocationNormalizedLoaded})=>
             {
