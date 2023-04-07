@@ -1,10 +1,12 @@
-import icon from "../../assets/icons/pig.svg"
 import { WelcomeCard } from "./WelcomeCard"
 
 export const First = ()=> (
       <WelcomeCard>
         {{
-          icon: ()=>(<img src={icon} />),
+          icon: ()=>(         
+          <svg>
+            <use xlinkHref='#pig'> </use>
+          </svg>),
           title:()=>(<h2>会挣钱<br/>还要会省钱</h2>)
         }}
       </WelcomeCard>
