@@ -1,14 +1,16 @@
-import { Transition, VNode, defineComponent, onMounted, ref, watch, watchEffect } from 'vue';
+import { Transition, VNode, defineComponent,ref,watchEffect } from 'vue';
 import { RouteLocationNormalizedLoaded, RouterView } from 'vue-router';
 import s from './Welcome.module.scss'
 import { useSwipe } from '../hooks/useSwipe';
 
 export const Welcome = defineComponent({
  setup: (props, context) => {
-  const main = ref<HTMLElement | null>(null)
+  const main = ref<HTMLElement>()
   const {swiping,direction,distance} = useSwipe(main)
   watchEffect(() => {
-    console.log(swiping.value, direction.value)
+    if(swiping.value && direction.value === 'left'){
+      console.log('翻页');
+    }
   })
   return () => (
     <div class={s.wrapper}>
