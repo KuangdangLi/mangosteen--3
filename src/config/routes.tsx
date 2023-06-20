@@ -14,10 +14,10 @@ export const routes = [
     {path:'/',redirect:'/welcome'},
     {path:'/welcome',component:Welcome,children:[
         {path:'',redirect:'/welcome/1'},
-        {path:'1',components:{main:First,footer:FirstFooter}},
-        {path:'2',components:{main:Second,footer:SecondFooter}},
-        {path:'3',components:{main:Third,footer:ThirdFooter}},
-        {path:'4',components:{main:Forth,footer:ForthFooter}},
+        {path:'1',name:"Welcome1",components:{main:First,footer:FirstFooter}},
+        {path:'2',name:"Welcome2",components:{main:Second,footer:SecondFooter}},
+        {path:'3',name:"Welcome3",components:{main:Third,footer:ThirdFooter}},
+        {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
 
     ]},
 
