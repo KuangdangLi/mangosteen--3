@@ -9,6 +9,7 @@ import { FirstFooter } from "../components/welcome/FirstFooter"
 import { SecondFooter } from "../components/welcome/SecondFooter"
 import { ThirdFooter } from "../components/welcome/ThirdFooter"
 import { ForthFooter } from "../components/welcome/ForthFooter"
+import { startPage } from "../views/startPage"
 
 export const routes = [
     {path:'/',redirect:'/welcome'},
@@ -20,5 +21,5 @@ export const routes = [
         {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
 
     ]},
-
+    {path:'/start',component:startPage}
 ]
