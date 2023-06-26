@@ -10,6 +10,9 @@ import { SecondFooter } from "../components/welcome/SecondFooter"
 import { ThirdFooter } from "../components/welcome/ThirdFooter"
 import { ForthFooter } from "../components/welcome/ForthFooter"
 import { StartPage } from "../views/StartPage"
+import { ItemPage } from "../views/ItemPage"
+import { ItemList } from "../components/item/ItemList"
+import { ItemCreate } from "../components/item/ItemCreate"
 
 
 
@@ -23,5 +26,11 @@ export const routes = [
         {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
 
     ]},
-    {path:'/start',component:StartPage}
+    {path:'/start',component:StartPage},
+    {path:'/items',component:ItemPage,
+     children:[
+        {path:'',component:ItemList},
+        {path:'create',component:ItemCreate}
+    ]       
+}
 ]
