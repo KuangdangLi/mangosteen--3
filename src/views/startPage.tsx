@@ -3,11 +3,11 @@ import { Button } from '../shared/Button';
 import { FloatButton } from '../shared/FloatButton';
 import { Center } from '../shared/Center';
 import { Icon } from '../shared/Icon';
-import s from './startPage.module.scss';
+import s from './StartPage.module.scss';
 import { Navbar } from '../shared/Navbar';
 import { Overlay } from '../shared/Overlay';
 
-export const startPage = defineComponent({ 
+export const StartPage = defineComponent({ 
  setup: (props, context) => {
     const refOverlayVisible = ref(false)
     const onClickMenu = ()=>{
@@ -25,7 +25,7 @@ export const startPage = defineComponent({
         <Icon name='pig' class={s.pig}></Icon>
       </Center>
     <div class={s.button_wrapper}>
-        <Button class={s.button}>test</Button>
+          <Button class={s.button}>test</Button>
    </div>
     <FloatButton iconName="add"></FloatButton>
     {refOverlayVisible.value && <Overlay onClose={()=>refOverlayVisible.value=false}/>}
