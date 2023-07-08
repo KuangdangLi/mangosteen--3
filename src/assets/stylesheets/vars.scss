@@ -30,4 +30,13 @@
   --item-button-bg: white;
   --item-button-bg-important: #5C33BE;
   --item-button-text-important:white;
+  --tag-button-bg-important: #5c33be;
+  --tag-button-text-important: white;
+  --tag-input-min-height: 48px;
+  --tag-input-border-color: #5c33be;
+  --tag-input-radius: var(--button-radius);
+  --tag-input-shadow: rgba(0,0,0,0.25);
+  --tag-error-color: #E10505;
+  --tag-emoji-nav-text: #999;
+  --tag-emoji-nav-text-selected: #333;
 }
