@@ -12,6 +12,7 @@ export const Tabs = defineComponent({
     type: Function as PropType<(name:string)=>void>
   }
  },
+ emits:['update:selected'],
  setup: (props, context) => {
   const cp = props.classPrefix   
   return () => {
