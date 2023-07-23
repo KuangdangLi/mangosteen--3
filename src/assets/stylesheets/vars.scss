@@ -1,4 +1,5 @@
 :root {
+  --bg: white;
   --welcome-card-bg: white;
   --welcome-text: white;
   --welcome-bg-start: #5d33be;
@@ -49,4 +50,5 @@
   --list-tag-text: #333;
   --list-amount-text: var(--amount-text);
   --list-time-text: var(--date-text);
+  --dialog-header-text: white;
 }
