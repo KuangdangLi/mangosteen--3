@@ -1,3 +1,4 @@
+import { Overlay } from 'vant';
 import { defineComponent, PropType, reactive, ref, watchEffect } from 'vue';
 import s from './ItemList.module.scss';
 import { MainLayout } from '../../layouts/MainLayout';
@@ -5,7 +6,6 @@ import { Icon } from '../../shared/Icon';
 import { Tab, Tabs } from '../../shared/Tabs';
 import { ItemSummary } from './ItemSummary';
 import { Time } from '../../shared/time';
-import { Overlay } from 'vant';
 import { Form, FormItem } from '../../shared/Form';
 import { OverlayIcon } from '../../shared/Overlay';
 export const ItemList = defineComponent({
