@@ -1,10 +1,11 @@
-import { defineComponent, PropType, reactive } from 'vue';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 import { MainLayout } from '../layouts/MainLayout';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
 import { Icon } from '../shared/Icon';
 import { validate } from '../shared/validate';
 import s from './SignInPage.module.scss';
+import axios from 'axios';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -26,8 +27,14 @@ export const SignInPage = defineComponent({
         { key: 'code', type: 'required', message: '必填' },
       ]))
     }
-    const onClickSendValidationCode = ()=>{
-      console.log('111');
+    const refValidationCode = ref<any>()
+    const onClickSendValidationCode = async ()=>{
+      const response = await axios.post('https://mangosteen2.hunger-valley.com/api/v1/validation_codes',{email:formData.email})
+      .catch(()=>{
+
+      })//失败
+      //成功      
+      refValidationCode.value.startCount()
     }
     return () => (
       <MainLayout>{
@@ -44,7 +51,7 @@ export const SignInPage = defineComponent({
                 <FormItem label="邮箱地址" type="text"
                   placeholder='请输入邮箱，然后点击发送验证码'
                   v-model={formData.email} error={errors.email?.[0]} />
-                <FormItem label="验证码" type="validationCode"
+                <FormItem ref={refValidationCode} label="验证码" type="validationCode"
                   placeholder='请输入六位数字'
                   countFrom={60}
                   onClick={onClickSendValidationCode}
