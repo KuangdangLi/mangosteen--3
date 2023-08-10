@@ -8,6 +8,7 @@ import s from './SignInPage.module.scss';
 import axios from 'axios';
 import { http } from '../shared/Http';
 import { useBool } from '../hooks/useBool';
+import { history } from '../shared/history';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -29,7 +30,10 @@ export const SignInPage = defineComponent({
         { key: 'code', type: 'required', message: '必填' },
       ]))
       if(!hasError(errors)){
-        const response = await http.post('/session',formData)
+        const response = await http.post<{jwt:string}>('/session',formData)
+              .catch(onError)
+        localStorage.setItem('jwt',response.data.jwt)
+        history.push('/')
       }
     }
     const refValidationCode = ref<any>()
