@@ -27,6 +27,15 @@ export class Http {
 }
 
 export const http = new Http('https://mangosteen2.hunger-valley.com/api/v1')
+ 
+http.instance.interceptors.request.use(config => {
+  const jwt = localStorage.getItem('jwt')
+  if(jwt){
+    config.headers!.Authorization = `Bearer ${jwt}`
+  }
+  return config
+}
+)
 
 http.instance.interceptors.response.use(response=>{
     console.log('response');
