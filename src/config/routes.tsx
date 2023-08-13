@@ -18,17 +18,23 @@ import { TagCreate } from "../components/tag/TagCreate"
 import { TagEdit } from "../components/tag/TagEdit"
 import { SignInPage } from "../views/SignInPage"
 import { StatisticsPage } from "../views/StatisticsPage"
+import { RouteRecordRaw } from "vue-router"
 
 
-
-export const routes = [
+export const routes: RouteRecordRaw[] = [
     {path:'/',redirect:'/welcome'},
-    {path:'/welcome',component:Welcome,children:[
-        {path:'',redirect:'/welcome/1'},
-        {path:'1',name:"Welcome1",components:{main:First,footer:FirstFooter}},
-        {path:'2',name:"Welcome2",components:{main:Second,footer:SecondFooter}},
-        {path:'3',name:"Welcome3",components:{main:Third,footer:ThirdFooter}},
-        {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
+    {
+        path:'/welcome',
+        component:Welcome,
+        beforeEnter:(to,from,next)=>{
+            localStorage.getItem('skipFeatures') === 'yes' ? next('/start') : next()
+        },
+        children:[
+            {path:'',redirect:'/welcome/1'},
+            {path:'1',name:"Welcome1",components:{main:First,footer:FirstFooter}},
+            {path:'2',name:"Welcome2",components:{main:Second,footer:SecondFooter}},
+            {path:'3',name:"Welcome3",components:{main:Third,footer:ThirdFooter}},
+            {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
 
     ]},
     {path:'/start',component:StartPage},
