@@ -5,10 +5,9 @@ import { Form, FormItem } from '../shared/Form';
 import { Icon } from '../shared/Icon';
 import { hasError, validate } from '../shared/validate';
 import s from './SignInPage.module.scss';
-import axios from 'axios';
 import { http } from '../shared/Http';
 import { useBool } from '../hooks/useBool';
-import { history } from '../shared/history';
+import { useRoute, useRouter } from 'vue-router';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -19,6 +18,8 @@ export const SignInPage = defineComponent({
       email: [],
       code: []
     })
+    const route = useRoute()
+    const router = useRouter()
     const onSubmit = async (e: Event) => {
       e.preventDefault()
       Object.assign(errors, {
@@ -33,7 +34,8 @@ export const SignInPage = defineComponent({
         const response = await http.post<{jwt:string}>('/session',formData)
               .catch(onError)
         localStorage.setItem('jwt',response.data.jwt)
-        history.push('/')
+        const returnTo = route.query.return_to?.toString()
+        router.push(returnTo || '/')
       }
     }
     const refValidationCode = ref<any>()
