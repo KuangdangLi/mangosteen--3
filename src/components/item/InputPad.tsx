@@ -6,7 +6,10 @@ import { Time } from '../../shared/time';
 export const InputPad = defineComponent({
  props: {
   happenAt: String,
-  amount: Number
+  amount: Number,
+  onSubmit: {
+    type: Function as PropType<() => void>
+  }
  },
  setup: (props, context) => {
   const now = new Date()
@@ -57,8 +60,11 @@ export const InputPad = defineComponent({
     {text:'.',onClick:()=>{appendText('.')}},
     {text:'0',onClick:()=>{appendText(0)}},
     {text:'清空',onClick:()=>{refAmount.value='0'}},
-    {text:'提交',onClick:() => context.emit('update:amount',
-    parseFloat(refAmount.value) * 100)},
+    {text:'提交',onClick: () => {
+      context.emit('update:amount', parseFloat(refAmount.value) * 100)
+      props.onSubmit?.()
+    }
+  },
   ] 
   return () => (
     <>
