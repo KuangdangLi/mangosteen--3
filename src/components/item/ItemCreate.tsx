@@ -1,6 +1,5 @@
 import { defineComponent, PropType, reactive, ref } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
-import { Icon } from '../../shared/Icon';
 import s from './ItemCreate.module.scss';
 import { Tab, Tabs } from '../../shared/Tabs';
 import { InputPad } from './InputPad';
@@ -9,6 +8,7 @@ import { AxiosError } from 'axios';
 import { Dialog } from 'vant';
 import { useRouter } from 'vue-router';
 import { http } from '../../shared/Http';
+import { BackIcon } from '../../shared/BackIcon';
 export const ItemCreate = defineComponent({
  props: {
   name: {
@@ -43,7 +43,7 @@ export const ItemCreate = defineComponent({
   return () => (
     <MainLayout class={s.layout}>{{
         title:()=>'记一笔',
-        icon:()=> <Icon name="left" class={s.navIcon}/>,
+        icon:()=> <BackIcon />,
         default:()=> (
             <>
                 <div class={s.wrapper}>

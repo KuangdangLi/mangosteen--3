@@ -1,9 +1,9 @@
 import { defineComponent, PropType } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
-import { Icon } from '../../shared/Icon';
 import { TagForm } from './TagForm';
 import s from './Tag.module.scss' 
 import { Button } from '../../shared/Button';
+import { BackIcon } from '../../shared/BackIcon';
 export const TagEdit = defineComponent({
  props: {
   name: {
@@ -15,7 +15,7 @@ export const TagEdit = defineComponent({
    <MainLayout>
         {{
             title: ()=> '修改标签',
-            icon:()=> <Icon name='menu' onClick={() => { }}></Icon>,
+            icon:()=> <BackIcon />,
             default: ()=>(<>
                 <TagForm />
                 <div class={s.actions}>
