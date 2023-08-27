@@ -1,4 +1,4 @@
-import { defineComponent, PropType, reactive } from 'vue';
+import { defineComponent, onMounted, PropType, reactive } from 'vue';
 import s from './Tag.module.scss';
 import { EmojiSelect } from '../../shared/EmojiSelect';
 import { hasError, Rules, validate } from '../../shared/validate';
@@ -9,20 +9,19 @@ import { http } from '../../shared/Http';
 import { onFormError } from '../../shared/onFormError';
 export const TagForm = defineComponent({
  props: {
-  name: {
-   type: String as PropType<string>
-  }
+    id:Number
  },
  setup: (props, context) => {
     const route = useRoute()
     const router = useRouter()
-    const formData = reactive({
+    const formData = reactive<Partial<Tag>>({
+        id:undefined,
         name: '',
         sign: '',
         kind: route.query.kind!.toString()
       })
       const errors = reactive<{[k in keyof typeof formData]?: string[]}>({})
-      const onSubmit = (e:Event)=>{
+      const onSubmit = async (e:Event)=>{
         e.preventDefault()
         const rules:Rules<typeof formData> = [
           {key:'name',type:'required',message:'必填'},
@@ -35,14 +34,25 @@ export const TagForm = defineComponent({
           })
         Object.assign(errors,validate(formData,rules))
         if(!hasError(errors)){
-          const response = http.post('/tags',formData,{
+          const promise = await formData.id ? http.patch(`/tags/${formData.id}`,formData,{
+            params:{_mock:'tagEdit'}
+          }) :
+          http.post('/tags',formData,{
             params:{_mock:'tagCreate'},
-          }).catch((error)=>{
+          })
+          await promise.catch((error)=>{
             onFormError(error,(data)=> Object.assign(errors,data.errors))
           })
           router.back()
         }
       }
+      onMounted(async ()=>{
+        if(!props.id){return}
+        const response = await http.get<Resource<Tag>>(`/tags/${props.id}`,{
+          _mock:'tagShow'
+        })
+        Object.assign(formData,response.data.resource)
+      })
   return () => (
     <Form onSubmit={onSubmit}>
       <FormItem label='标签名（最多 4 个字符）'
