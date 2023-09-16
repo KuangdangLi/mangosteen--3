@@ -15,6 +15,11 @@ type JSONValue =
   | JSONValue[]
   | Record<string, JSONValue>;
 
+type User = {
+  id: number;
+  email: string;
+};
+
 type Tag = {
   id: number;
   user_id: number;
