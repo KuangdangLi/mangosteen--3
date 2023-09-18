@@ -35,9 +35,9 @@ export const mockItemSummary: Mock = (config) => {
       200,
       {
         groups: [
-          { tag_id: 1, tag: { id: 1, name: '吃饭' }, amount: 100 },
-          { tag_id: 2, tag: { id: 2, name: '睡觉' }, amount: 300 },
-          { tag_id: 3, tag: { id: 3, name: '打豆豆' }, amount: 200 }
+          { tag_id: 1, tag: { id: 1, name: '吃饭',sign: faker.internet.emoji() }, amount: 100 },
+          { tag_id: 2, tag: { id: 2, name: '睡觉',sign: faker.internet.emoji() }, amount: 300 },
+          { tag_id: 3, tag: { id: 3, name: '打豆豆',sign: faker.internet.emoji() }, amount: 200 }
         ],
         summary: 600
       }
