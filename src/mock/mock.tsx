@@ -17,15 +17,32 @@ const createId = () => {
   return id
 }
 
-export const mockItemSummary: Mock = config => {
-  return [200, {
-    "groups": [
-      { "happen_at": "2023-09-18T00:00:00.000+0800", "amount": 100 },
-      { "happen_at": "2023-09-22T00:00:00.000+0800", "amount": 300 },
-      { "happen_at": "2023-09-29T00:00:00.000+0800", "amount": 200 }
-    ],
-    "summary": 600
-  }]
+export const mockItemSummary: Mock = (config) => {
+  if (config.params.group_by === 'happend_at') {
+    return [
+      200,
+      {
+        groups: [
+          { happen_at: '2023-09-18T00:00:00.000+0800', amount: 100 },
+          { happen_at: '2023-09-22T00:00:00.000+0800', amount: 300 },
+          { happen_at: '2023-09-29T00:00:00.000+0800', amount: 200 }
+        ],
+        summary: 600
+      }
+    ]
+  } else {
+    return [
+      200,
+      {
+        groups: [
+          { tag_id: 1, tag: { id: 1, name: '吃饭' }, amount: 100 },
+          { tag_id: 2, tag: { id: 2, name: '睡觉' }, amount: 300 },
+          { tag_id: 3, tag: { id: 3, name: '打豆豆' }, amount: 200 }
+        ],
+        summary: 600
+      }
+    ]
+  }
 }
 
 export const mockItemIndexBalance: Mock = config => {
