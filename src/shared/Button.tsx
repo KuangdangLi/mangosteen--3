@@ -25,8 +25,8 @@ export const Button = defineComponent({
  }, 
  setup: (props, context) => {
   const selfDisabled = ref(false)
-  const onClick = ()=>{
-    props.onClick?.()
+  const onClick = (e:MouseEvent)=>{
+    props.onClick?.(e)
     selfDisabled.value = true
     setTimeout(()=>{
       selfDisabled.value = false
