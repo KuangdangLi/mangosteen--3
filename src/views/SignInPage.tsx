@@ -1,4 +1,4 @@
-import { defineComponent, PropType, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { MainLayout } from '../layouts/MainLayout';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
