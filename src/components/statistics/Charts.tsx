@@ -56,7 +56,7 @@ export const Charts = defineComponent({
       happen_before: props.endDate,
       kind: kind.value,
       group_by:'happend_at',
-    },{_mock: 'itemSummary'})
+    },{_mock: 'itemSummary', _autoLoading: true})
     data1.value = response.data.groups
   }
   onMounted(fetchData1)
