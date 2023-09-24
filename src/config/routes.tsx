@@ -1,5 +1,3 @@
-import { Foo } from "../views/Foo"
-import { Bar } from "../views/Bar"
 import { Welcome } from "../views/Welcome"
 import { First } from "../components/welcome/First"
 import { Second } from "../components/welcome/Second"
@@ -9,7 +7,6 @@ import { FirstFooter } from "../components/welcome/FirstFooter"
 import { SecondFooter } from "../components/welcome/SecondFooter"
 import { ThirdFooter } from "../components/welcome/ThirdFooter"
 import { ForthFooter } from "../components/welcome/ForthFooter"
-import { StartPage } from "../views/StartPage"
 import { ItemPage } from "../views/ItemPage"
 import { ItemList } from "../components/item/ItemList"
 import { ItemCreate } from "../components/item/ItemCreate"
@@ -19,9 +16,7 @@ import { TagEdit } from "../components/tag/TagEdit"
 import { SignInPage } from "../views/SignInPage"
 import { StatisticsPage } from "../views/StatisticsPage"
 import { RouteRecordRaw } from "vue-router"
-import { http } from "../shared/Http"
 import { ComingSoon } from "../shared/ComingSoon"
-
 
 export const routes: RouteRecordRaw[] = [
     {path:'/',redirect:'/welcome'},
@@ -29,7 +24,7 @@ export const routes: RouteRecordRaw[] = [
         path:'/welcome',
         component:Welcome,
         beforeEnter:(to,from,next)=>{
-            localStorage.getItem('skipFeatures') === 'yes' ? next('/start') : next()
+            localStorage.getItem('skipFeatures') === 'yes' ? next('/items') : next()
         },
         children:[
             {path:'',redirect:'/welcome/1'},
@@ -39,7 +34,6 @@ export const routes: RouteRecordRaw[] = [
             {path:'4',name:"Welcome4",components:{main:Forth,footer:ForthFooter}},
 
     ]},
-    {path:'/start',component:StartPage},
     {
         path:'/items',component:ItemPage,
         children:[
