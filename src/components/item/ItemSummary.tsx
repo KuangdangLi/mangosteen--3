@@ -22,14 +22,11 @@ export const ItemSummary = defineComponent({
    }
  },
  setup: (props, context) => {
-  if (!props.startDate || !props.endDate) {
-    return () => <div>请先选择时间范围</div>
-  }
   const itemStore = useItemStore(['items',props.startDate,props.endDate])
   useAfterMe(()=>itemStore.fetchItems(props.startDate,props.endDate))
   watch(()=>[props.startDate,props.endDate], ()=>{
     itemStore.$reset()
-    itemStore.fetchItems()
+    itemStore.fetchItems(props.startDate, props.endDate)
   })
   const itemsBalance = reactive({
     expenses: 0, income: 0, balance: 0
@@ -50,6 +47,8 @@ export const ItemSummary = defineComponent({
     fetchItemsBalance()
   })
     return () => (
+      (!props.startDate || !props.endDate) ? <div>请先选择时间范围</div> 
+        :
       <div class={s.wrapper}>
         {(itemStore.items && itemStore.items.length > 0) ? (
           <>
