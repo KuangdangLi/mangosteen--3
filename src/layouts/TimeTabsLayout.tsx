@@ -53,13 +53,13 @@ export const TimeTabsLayout = defineComponent({
   }>({})
   const timeList = [
     {start:time.firstDayOfMonth(),
-     end:time.lastDayOfMonth()   
+     end:time.lastDayOfMonth().add(1,'day')   
     },
     {start:time.add(-1,'month').firstDayOfMonth(),
-        end:time.add(-1,'month').lastDayOfMonth()   
+        end:time.add(-1,'month').lastDayOfMonth().add(1,'day')   
     },
     {start:time.firstDayOfYear(),
-        end:time.lastDayOfYear()   
+        end:time.lastDayOfYear().add(1,'day')   
     },
   ]
   const refOverlayVisible = ref(false)
@@ -78,7 +78,7 @@ export const TimeTabsLayout = defineComponent({
                     <Tab value='本月' name='本月'>
                         <props.component 
                             startDate={timeList[0].start.format()} 
-                            endDate={timeList[0].end.format()}/>
+                            endDate={ timeList[0].end.format()}/>
                     </Tab>
                     <Tab value='上月' name='上月'>
                         <props.component
@@ -113,7 +113,7 @@ export const TimeTabsLayout = defineComponent({
                     <Tab value='自定义时间' name='自定义时间'>
                         <props.component 
                             startDate={customTime.start} 
-                            endDate={customTime.end}/>
+                            endDate={new Time(customTime.end).add(1,'day').format()}/>
                     </Tab>
                 </Tabs>
                 }
