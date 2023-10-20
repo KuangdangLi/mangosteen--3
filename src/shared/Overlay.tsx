@@ -26,8 +26,9 @@ export const Overlay = defineComponent({
     const route = useRoute()
     const me = ref<User>()
     onMounted(async ()=>{
-      const response = await meStore.mePromise
-      me.value = response?.data.resource
+      // const response = await meStore.mePromise
+      meStore.mePromise?.then((response)=>me.value = response.data.resource,()=>{})
+      // me.value = response?.data.resource
     })
     const onClickSignIn = () => { }
     return () => <>
