@@ -35,7 +35,8 @@ export default defineConfig(({ command }) => {
         },
       },
     },
-    base: "/dist/",
+    // base: "/dist/",
+    //新电脑push test一下
     plugins: [
       vue(),
       vueJsx({
