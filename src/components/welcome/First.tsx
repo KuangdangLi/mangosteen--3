@@ -5,7 +5,7 @@ export const First = ()=> (
         {{
           icon: ()=>(         
           <svg>
-            <use xlinkHref='#pig'> </use>
+            <use xlinkHref='#check'> </use>
           </svg>),
           title:()=>(<h2>会挣钱<br/>还要会省钱</h2>)
         }}

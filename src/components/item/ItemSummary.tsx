@@ -92,7 +92,7 @@ export const ItemSummary = defineComponent({
         ) : (
           <>
             <Center class={s.pig_wrapper} direction='vertical'>
-              <Icon name="pig" class={s.pig} />
+              <Icon name="check" class={s.pig} />
               <p>目前没有数据</p>
             </Center>
             <div class={s.button_wrapper}>
